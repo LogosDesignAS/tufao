@@ -27,7 +27,7 @@ import re
 def get_version():
     try:
         content = tools.load("CMakeLists.txt")
-        version = re.search(r"project\([^\)]+VERSION (\d+\.\d+\.\d+)[^\)]*\)", content).group(1)
+        version = "1.4.5"
         return version.strip()
     except Exception:
         return None
@@ -54,10 +54,10 @@ class NewProjectConan(ConanFile):
         "gtest:shared": False
     }
     scm = {
-        "type": "svn",
+        "type": "git",
         "url": "auto",
         "revision": "auto",
-        #"submodule": "recursive"
+        "submodule": "recursive"
     }
     generators = "cmake"
 
