@@ -67,7 +67,6 @@ set(libdir "lib${LIB_SUFFIX}")
 # Targets
 add_subdirectory(src)
 add_subdirectory(include)
-add_subdirectory(pkg)
 add_subdirectory(doc)
 
 # uninstall target
