@@ -58,7 +58,7 @@ set(BUFFER_SIZE 128 CACHE STRING
 add_definitions(-DBUFFER_SIZE=${BUFFER_SIZE})
 
 # Build info
-set(TUFAO_LIBRARY "tufao${TUFAO_VERSION_MAJOR}")
+set(TUFAO_LIBRARY "Tufao")
 
 # Install info
 set(includedir include/tufao-${TUFAO_VERSION_MAJOR})
