@@ -42,7 +42,7 @@ class NewProjectConan(ConanFile):
     description = "An asynchronous web framework for C++ built on top of Qt "
     #exports = ["LICENSE.md"]
     settings = "os", "compiler", "build_type", "arch"
-    requires = ('Boost'
+    requires = ('boost/[>1.5.5]'
                 )
     options = {   # remove for a header-only library
         "shared": [True, False],
@@ -88,8 +88,6 @@ class NewProjectConan(ConanFile):
     def build_requirements(self):
         if self._run_tests:
             self.build_requires("gtest/1.11.0")
-            if self.settings.os == 'Linux':
-                self.build_requires('OsInterfaceLinux/[>1.0.0]@jea/test')
 
 
     def build(self):
