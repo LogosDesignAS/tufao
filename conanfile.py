@@ -85,11 +85,6 @@ class NewProjectConan(ConanFile):
         if self.settings.os == 'Windows':
             del self.options.fPIC   # remove for a header-only library
 
-    def build_requirements(self):
-        if self._run_tests:
-            self.build_requires("gtest/1.11.0")
-
-
     def build(self):
         cmake = self._configure_cmake()
         cmake.build()
