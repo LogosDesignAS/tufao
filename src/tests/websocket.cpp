@@ -1,6 +1,6 @@
 #include "websocket.h"
 #include <QtTest/QTest>
-#include "../websocket.h"
+#include "Tufao/websocket.h"
 
 using namespace Tufao;
 

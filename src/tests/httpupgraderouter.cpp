@@ -1,7 +1,7 @@
 #include "httpupgraderouter.h"
 #include <QtTest/QTest>
 #include <QtCore/QSharedPointer>
-#include "../httpupgraderouter.h"
+#include "Tufao/httpupgraderouter.h"
 
 using namespace Tufao;
 

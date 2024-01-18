@@ -19,8 +19,8 @@
 #ifndef TUFAO_PRIV_HTTPSERVER_H
 #define TUFAO_PRIV_HTTPSERVER_H
 
-#include "../httpserver.h"
-#include "../httpserverrequest.h"
+#include "../include/Tufao/httpserver.h"
+#include "../include/Tufao/httpserverrequest.h"
 #include "tcpserverwrapper.h"
 
 namespace Tufao {

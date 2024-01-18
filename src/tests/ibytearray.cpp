@@ -1,6 +1,6 @@
 #include "ibytearray.h"
 #include <QtTest/QTest>
-#include "../ibytearray.h"
+#include "Tufao/ibytearray.h"
 
 using namespace Tufao;
 

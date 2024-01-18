@@ -1,6 +1,6 @@
 #include "httpfileserver.h"
 #include <QtTest/QTest>
-#include "../httpfileserver.h"
+#include "Tufao/httpfileserver.h"
 
 using namespace Tufao;
 

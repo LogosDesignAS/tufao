@@ -19,7 +19,7 @@
 #ifndef TUFAO_PRIV_HTTPUPGRADEROUTER_H
 #define TUFAO_PRIV_HTTPUPGRADEROUTER_H
 
-#include "../httpupgraderouter.h"
+#include "Tufao/httpupgraderouter.h"
 
 #include <QtCore/QVector>
 

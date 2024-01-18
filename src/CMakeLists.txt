@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.18.1)
+project(Tufao VERSION 1.4.5)
 # Source files
 set(tufao_SRC
     httpserver.cpp
@@ -23,6 +24,21 @@ set(tufao_SRC
     httpupgraderouter.cpp
 	 classhandlermanager.cpp
     classhandler.cpp
+        include/Tufao/urlrewriterhandler.h
+        include/Tufao/httpserver.h
+        include/Tufao/classhandlermanager.h
+        include/Tufao/httpupgraderouter.h
+        include/Tufao/simplesessionstore.h
+        include/Tufao/websocket.h
+        include/Tufao/httpsserver.h
+        include/Tufao/sessionstore.h
+        include/Tufao/notfoundhandler.h
+        include/Tufao/httpserverresponse.h
+        include/Tufao/abstractmessagesocket.h
+        include/Tufao/httppluginserver.h
+        include/Tufao/httpfileserver.h
+        include/Tufao/httpserverrequest.h
+        include/Tufao/httpserverrequestrouter.h
 )
 
 add_definitions(-DTUFAO_LIBRARY)
@@ -63,40 +79,45 @@ if("${CMAKE_VERSION}" VERSION_GREATER "3.0")
     )
 endif()
 
-if("${CMAKE_VERSION}" VERSION_LESS "2.8.12")
-  target_include_directories("${TUFAO_LIBRARY}" INTERFACE "${CMAKE_INSTALL_PREFIX}/${includedir}")
-  install(TARGETS "${TUFAO_LIBRARY}" EXPORT "${TUFAO_LIBRARY}-export"
-          LIBRARY DESTINATION "${libdir}"
-          ARCHIVE DESTINATION "${libdir}"
-          RUNTIME DESTINATION bin
-          PUBLIC_HEADER DESTINATION "${includedir}"
-  )
-else()
-  # Support relocatable packages. It can be usefull on Windows
-  install(TARGETS "${TUFAO_LIBRARY}" EXPORT "${TUFAO_LIBRARY}-export"
-          LIBRARY DESTINATION "${libdir}"
-          ARCHIVE DESTINATION "${libdir}"
-          RUNTIME DESTINATION bin
-          PUBLIC_HEADER DESTINATION "${includedir}" INCLUDES DESTINATION "${includedir}"
-  )
-endif()
-
-# Tests
-if(ENABLE_TESTS)
-    enable_testing()
-    add_subdirectory(tests)
-endif()
-
-# Install info
-install(TARGETS "${TUFAO_LIBRARY}"
-    DESTINATION "${libdir}"
-    COMPONENT runtime
+set(LIB_NAME "${TUFAO_LIBRARY}")
+target_include_directories(${LIB_NAME}
+        PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/Tufao>
+        $<INSTALL_INTERFACE:include>
 )
-install(DIRECTORY .
-    DESTINATION "${includedir}/Tufao"
-    COMPONENT development
-    FILES_MATCHING PATTERN *.h
-    PATTERN doc EXCLUDE
-    PATTERN priv EXCLUDE
-    PATTERN tests EXCLUDE
+add_library("Tufao::${PROJECT_NAME}" ALIAS ${LIB_NAME})
+install(TARGETS "${LIB_NAME}"
+        EXPORT "${PROJECT_NAME}Targets"
+        LIBRARY DESTINATION "lib"
+        ARCHIVE DESTINATION "lib"
+        RUNTIME DESTINATION "bin"
+        INCLUDES DESTINATION "include"
+)
+install(DIRECTORY "include/" DESTINATION "include")
+
+install(EXPORT "${PROJECT_NAME}Targets"
+        FILE "${PROJECT_NAME}Targets.cmake"
+        NAMESPACE Tufao::
+        DESTINATION "lib/cmake/${PROJECT_NAME}"
+)
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+        "${CMAKE_CURRENT_SOURCE_DIR}/config.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+        INSTALL_DESTINATION "lib/cmake/${PROJECT_NAME}"
+)
+
+write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+        VERSION ${PROJECT_VERSION}
+        COMPATIBILITY AnyNewerVersion
+)
+
+install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION "lib/cmake/${PROJECT_NAME}"
 )

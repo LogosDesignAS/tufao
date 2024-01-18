@@ -27,7 +27,7 @@
 
 #include <QtNetwork/QAbstractSocket>
 
-#include "httpserverrequest.h"
+#include "include/Tufao/httpserverrequest.h"
 
 static qint64 bufferSize = BUFFER_SIZE;
 static const QMimeDatabase mimes;

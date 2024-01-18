@@ -62,30 +62,13 @@ add_definitions(-DBUFFER_SIZE=${BUFFER_SIZE})
 set(TUFAO_LIBRARY "Tufao")
 
 # Install info
-set(includedir include/tufao-${TUFAO_VERSION_MAJOR})
+set(includedir src/include/tufao-${TUFAO_VERSION_MAJOR})
 set(libdir "lib${LIB_SUFFIX}")
 
 # Targets
 add_subdirectory(src)
-add_subdirectory(include)
 add_subdirectory(doc)
 
-# uninstall target
-configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY)
-
-add_custom_target(uninstall
-    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
-
-# CPack installer
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${TUFAO_BRIEF}")
-set(CPACK_PACKAGE_VERSION_MAJOR "${TUFAO_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${TUFAO_VERSION_MINOR}")
-set(CPACK_PACKAGE_VERSION_PATCH "${TUFAO_VERSION_PATCH}")
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/COPYING.LESSER")
-include(CPack)
 
 # Testing
 if(ENABLE_TESTS)
@@ -94,19 +77,5 @@ if(ENABLE_TESTS)
 endif()
 
 # cmake-modules
-set(TUFAO_CONFIG_INSTALL_DIR "${libdir}/cmake/Tufao${TUFAO_VERSION_MAJOR}")
-include(CMakePackageConfigHelpers)
-configure_package_config_file(
-  TufaoConfig.cmake.in
-  "${CMAKE_CURRENT_BINARY_DIR}/Tufao${TUFAO_VERSION_MAJOR}Config.cmake"
-  INSTALL_DESTINATION ${TUFAO_CONFIG_INSTALL_DIR}
-  PATH_VARS libdir
-            includedir)
+set(TUFAO_CONFIG_INSTALL_DIR "${libdir}/cmake/Tufao")
 
-write_basic_config_version_file(Tufao${TUFAO_VERSION_MAJOR}ConfigVersion.cmake VERSION ${TUFAO_VERSION} COMPATIBILITY ExactVersion)
-
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/Tufao${TUFAO_VERSION_MAJOR}Config.cmake
-              ${CMAKE_CURRENT_BINARY_DIR}/Tufao${TUFAO_VERSION_MAJOR}ConfigVersion.cmake
-        DESTINATION ${TUFAO_CONFIG_INSTALL_DIR})
-
-install(EXPORT "${TUFAO_LIBRARY}-export" DESTINATION ${TUFAO_CONFIG_INSTALL_DIR} FILE Tufao${TUFAO_VERSION_MAJOR}Targets.cmake)

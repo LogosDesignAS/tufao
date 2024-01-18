@@ -2,7 +2,7 @@
 #include <QtTest/QTest>
 #include <QtCore/QLocale>
 #include <QtCore/QBuffer>
-#include "../httpserverresponse.h"
+#include "Tufao/httpserverresponse.h"
 
 using namespace Tufao;
 

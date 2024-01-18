@@ -17,7 +17,7 @@
 */
 
 #include "priv/urlrewriterhandler.h"
-#include "httpserverrequest.h"
+#include "include/Tufao/httpserverrequest.h"
 
 namespace Tufao {
 

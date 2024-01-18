@@ -19,7 +19,7 @@
 #ifndef TUFAO_PRIV_CLASSHANDLERMANAGER_H
 #define TUFAO_PRIV_CLASSHANDLERMANAGER_H
 
-#include "../classhandlermanager.h"
+#include "Tufao/classhandlermanager.h"
 
 namespace Tufao {
 

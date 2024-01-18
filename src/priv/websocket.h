@@ -20,7 +20,7 @@
 #define TUFAO_PRIV_WEBSOCKET_H
 
 #include <boost/http/reader/response.hpp>
-#include "../websocket.h"
+#include "Tufao/websocket.h"
 
 #include <QtNetwork/QAbstractSocket>
 #include <QtCore/QtEndian>

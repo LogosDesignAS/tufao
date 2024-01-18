@@ -19,7 +19,7 @@
 #ifndef TUFAO_PRIV_SESSIONSTORE_H
 #define TUFAO_PRIV_SESSIONSTORE_H
 
-#include "../sessionstore.h"
+#include "Tufao/sessionstore.h"
 
 namespace Tufao {
 

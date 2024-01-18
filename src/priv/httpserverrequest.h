@@ -21,8 +21,8 @@
 
 #include <boost/http/reader/request.hpp>
 
-#include "../headers.h"
-#include "../httpserverrequest.h"
+#include "Tufao/headers.h"
+#include "../include/Tufao/httpserverrequest.h"
 
 #include <QtNetwork/QAbstractSocket>
 #include <QtCore/QTimer>

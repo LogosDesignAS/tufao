@@ -16,7 +16,7 @@
     License along with this library.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "../httpfileserver.h"
+#include "Tufao/httpfileserver.h"
 #include <QtCore/QDir>
 
 namespace Tufao {

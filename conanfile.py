@@ -24,8 +24,7 @@ class TufaoConan(ConanFile):
     description = "An asynchronous web framework for C++ built on top of Qt "
     #exports = ["LICENSE.md"]
     settings = "os", "compiler", "build_type", "arch"
-    requires = ('boost/[>1.5.5]'
-                )
+
     options = {   # remove for a header-only library
         "shared": [True, False],
         "fPIC": [True, False]
@@ -40,6 +39,8 @@ class TufaoConan(ConanFile):
     exports_sources = ('CMakeLists.txt', 'src/*', 'tests/*', 'TufaoConfig.cmake.in', 'COPYING.LESSER', 'cmake/*',
                        'include/*', 'doc/*', '3rd/*')
 
+    def requirements(self):
+        self.requires('boost/1.83.0')
 
     def configure(self):
         self.options["Tufao"].shared = True

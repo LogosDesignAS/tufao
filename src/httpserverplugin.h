@@ -40,7 +40,7 @@
 
 #include <QtCore/QVariant>
 #include <QtCore/QObject>
-#include "tufao_global.h"
+#include "include/Tufao/tufao_global.h"
 #include <functional>
 
 namespace Tufao {

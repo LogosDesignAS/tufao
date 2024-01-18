@@ -19,8 +19,8 @@
 #ifndef TUFAO_PRIV_HTTPSSERVER_H
 #define TUFAO_PRIV_HTTPSSERVER_H
 
-#include "../httpsserver.h"
-#include "../tufao_global.h"
+#include "Tufao/httpsserver.h"
+#include "../include/Tufao/tufao_global.h"
 
 #include <QtNetwork/QSslCertificate>
 #include <QtNetwork/QSslKey>

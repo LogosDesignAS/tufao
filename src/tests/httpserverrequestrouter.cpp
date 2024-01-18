@@ -1,7 +1,7 @@
 #include "httpserverrequestrouter.h"
 #include <QtTest/QTest>
 #include <QtCore/QSharedPointer>
-#include "../httpserverrequestrouter.h"
+#include "Tufao/httpserverrequestrouter.h"
 
 using namespace Tufao;
 

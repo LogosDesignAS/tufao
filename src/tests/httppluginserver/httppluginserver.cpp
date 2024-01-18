@@ -1,7 +1,7 @@
 #include "httppluginserver.h"
 #include <QtTest/QTest>
 #include <QtCore/QLocale>
-#include "../../httppluginserver.h"
+#include "Tufao/httppluginserver.h"
 
 using namespace Tufao;
 

@@ -24,7 +24,7 @@
 #define TUFAO_SESSIONSTORE_H
 
 #include "httpserverrequest.h"
-#include "sessionsettings.h"
+#include "../../sessionsettings.h"
 
 namespace Tufao {
 

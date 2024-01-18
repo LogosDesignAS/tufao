@@ -19,8 +19,8 @@
 #ifndef TUFAO_PRIV_HTTPSERVERRESPONSE_H
 #define TUFAO_PRIV_HTTPSERVERRESPONSE_H
 
-#include "../httpserverresponse.h"
-#include "../headers.h"
+#include "Tufao/httpserverresponse.h"
+#include "Tufao/headers.h"
 
 #include <QtCore/QIODevice>
 

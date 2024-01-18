@@ -19,7 +19,7 @@
 #ifndef TUFAO_PRIV_SIMPLESESSIONSTORE_H
 #define TUFAO_PRIV_SIMPLESESSIONSTORE_H
 
-#include "../simplesessionstore.h"
+#include "Tufao/simplesessionstore.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QTimer>
 #include <QtCore/QVariantMap>

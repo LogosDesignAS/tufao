@@ -17,7 +17,7 @@
 */
 
 #include "priv/httpserverrequestrouter.h"
-#include "httpserverrequest.h"
+#include "include/Tufao/httpserverrequest.h"
 
 #include <QtCore/QStringList>
 #include <QtCore/QUrl>

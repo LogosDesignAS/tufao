@@ -19,7 +19,7 @@
 #ifndef TUFAO_PRIV_REASONPHRASE_H
 #define TUFAO_PRIV_REASONPHRASE_H
 
-#include "../httpserverresponse.h"
+#include "Tufao/httpserverresponse.h"
 
 namespace Tufao {
 

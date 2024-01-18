@@ -20,7 +20,7 @@
 #define TCPSERVERWRAPPER_H
 
 #include <QtNetwork/QTcpServer>
-#include "../tufao_global.h"
+#include "../include/Tufao/tufao_global.h"
 
 namespace Tufao {
 

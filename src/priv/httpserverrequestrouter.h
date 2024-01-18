@@ -19,7 +19,7 @@
 #ifndef TUFAO_PRIV_HTTPSERVERREQUESTROUTER_H
 #define TUFAO_PRIV_HTTPSERVERREQUESTROUTER_H
 
-#include "../httpserverrequestrouter.h"
+#include "Tufao/httpserverrequestrouter.h"
 
 #include <QtCore/QVector>
 

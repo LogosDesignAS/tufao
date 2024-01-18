@@ -17,7 +17,7 @@
 */
 
 #include "priv/websocket.h"
-#include "httpserverrequest.h"
+#include "include/Tufao/httpserverrequest.h"
 #include "headers.h"
 
 #include <QtCore/QCryptographicHash>

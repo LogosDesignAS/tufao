@@ -39,7 +39,7 @@
 #include <QtCore/QMutex>
 #include <QtCore/QMutexLocker>
 
-#include "httpserverrequest.h"
+#include "include/Tufao/httpserverrequest.h"
 #include "headers.h"
 
 namespace Tufao {

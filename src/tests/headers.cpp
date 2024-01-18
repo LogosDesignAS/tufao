@@ -1,7 +1,7 @@
 #include "headers.h"
 #include <QtTest/QTest>
 #include <QtCore/QLocale>
-#include "../headers.h"
+#include "Tufao/headers.h"
 
 using namespace Tufao;
 

@@ -19,8 +19,8 @@
 #ifndef TUFAO_PRIV_HTTPPLUGINSERVER_H
 #define TUFAO_PRIV_HTTPPLUGINSERVER_H
 
-#include "../httppluginserver.h"
-#include "../httpserverrequestrouter.h"
+#include "Tufao/httppluginserver.h"
+#include "Tufao/httpserverrequestrouter.h"
 #include "../httpserverplugin.h"
 
 #include "dependencytree.h"
