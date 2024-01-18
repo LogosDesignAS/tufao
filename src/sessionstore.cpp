@@ -27,7 +27,7 @@
  * To remove a cookie, the server returns a Set-Cookie header with an expiration
  * date in the past.
  */
-#define PAST QDateTime(QDate(2003, 12, 1))
+#define PAST QDateTime(QDate(2003, 12, 1), QTime::fromMSecsSinceStartOfDay(0))
 
 namespace Tufao {
 
