@@ -408,7 +408,7 @@ bool ClassHandlerManager::handleRequest(Tufao::HttpServerRequest & request, Tufa
         return ret;
     }();
 
-    QStringList pathComponents = namespacedPath.split("/", QString::SkipEmptyParts);
+    QStringList pathComponents = namespacedPath.split("/", Qt::SkipEmptyParts);
 
 
     // There must be at least two path components (class & method)
