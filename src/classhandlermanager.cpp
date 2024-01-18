@@ -251,7 +251,7 @@ void ClassHandlerManager::dispatchJSONMethod(HttpServerResponse & response,
         response.end(jsonDocument.toJson());
     }
 }
-
+#define Q_ARG_OLD(type, data) QArgument<type >(#type, data)
 bool ClassHandlerManager::processRequest(HttpServerRequest & request,
                                          HttpServerResponse & response,
                                          const QString className,
@@ -268,8 +268,8 @@ bool ClassHandlerManager::processRequest(HttpServerRequest & request,
 
         // Create the arguments
         QGenericArgument argumentTable[10];
-        argumentTable[0] = Q_ARG(Tufao::HttpServerRequest, request);
-        argumentTable[1] = Q_ARG(Tufao::HttpServerResponse, response);
+        argumentTable[0] = Q_ARG_OLD(Tufao::HttpServerRequest, request);
+        argumentTable[1] = Q_ARG_OLD(Tufao::HttpServerResponse, response);
 
         // We need this to keep objects in scope until the actual invoke() call.
         QVariant variants[10];
