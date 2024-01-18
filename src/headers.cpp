@@ -24,7 +24,6 @@
 #include <QtCore/QLocale>
 #include <QtCore/QDebug>
 
-#include <iostream>
 
 namespace Tufao {
 
@@ -62,7 +61,7 @@ QDateTime Headers::toDateTime(const QByteArray &headerValue,
 QDebug operator<<(QDebug dbg, const Headers &headers)
 {
     for (Headers::const_iterator i = headers.begin(); i != headers.end();++i)
-        dbg.nospace() << i.key() << ": " << i.value() << std::endl;
+        dbg.nospace() << i.key() << ": " << i.value() << '\n';
 
     return dbg.space();
 }
