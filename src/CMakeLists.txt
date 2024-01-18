@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.18.1)
 # Source files
 set(tufao_SRC
     httpserver.cpp
@@ -36,7 +37,7 @@ endif()
 
 add_library("${TUFAO_LIBRARY}" SHARED ${tufao_SRC})
 
-target_link_libraries("${TUFAO_LIBRARY}" Qt5::Core Qt5::Network)
+target_link_libraries("${TUFAO_LIBRARY}" PUBLIC boost::boost Qt6::Core Qt6::Network)
 
 set_target_properties(
     "${TUFAO_LIBRARY}"

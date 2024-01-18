@@ -1,40 +1,22 @@
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 Mateusz Pusz
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-from conans import ConanFile, CMake, tools
+import os
 import re
+from conan import ConanFile
+from conan.tools.cmake import CMakeDeps, CMake, CMakeToolchain, cmake_layout
+from conan.tools import files
+from conan.tools.files import copy
+from pathlib import Path
 
 
 def get_version():
     try:
-        content = tools.load("CMakeLists.txt")
         version = "1.4.5"
         return version.strip()
     except Exception:
         return None
 
 
-class NewProjectConan(ConanFile):
-    name = "Tufao"
+class TufaoConan(ConanFile):
+    name = "tufao"
     version = get_version()
     #author = "Mateusz Pusz"
     #license = "https://github.com/mpusz/new-project-template/blob/master/LICENSE"
@@ -51,53 +33,53 @@ class NewProjectConan(ConanFile):
     default_options = {
         "shared": False,    # remove for a header-only library
         "fPIC": True,       # remove for a header-only library
-        "gtest:shared": False
     }
-    scm = {
-        "type": "git",
-        "url": "auto",
-        "revision": "auto",
-        "submodule": "recursive"
-    }
-    generators = "cmake"
 
-    @property
-    def _run_tests(self):
-        return tools.get_env("CONAN_RUN_TESTS", False)
+    generators = "CMakeDeps"
 
-    def _configure_cmake(self, folder="src"):
-        cmake = CMake(self)
-        if self.settings.compiler == "Visual Studio" and self.options.shared:
-            cmake.definitions["CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS"] = True
-        if self._run_tests:
-            # developer's mode (unit tests, examples, restrictive compilation warnings, ...)
-            cmake.configure()
-        else:
-            # consumer's mode (library sources only)
-            cmake.configure(source_folder=folder, build_folder=folder)
-        return cmake
+    exports_sources = ('CMakeLists.txt', 'src/*', 'tests/*', 'TufaoConfig.cmake.in', 'COPYING.LESSER', 'cmake/*',
+                       'include/*', 'doc/*')
+
 
     def configure(self):
-        tools.check_min_cppstd(self, "11")
         self.options["Tufao"].shared = True
 
     def config_options(self):
         if self.settings.os == 'Windows':
             del self.options.fPIC   # remove for a header-only library
 
+    def layout(self):
+        cmake_layout(self)
+        self.folders.build = "conan/build"
+        self.folders.generators = "conan"
+
+    def generate(self):
+        tc = CMakeToolchain(self)
+        tc.presets_prefix = Path(self.folders._base_build).name
+        tc.generate()
+
+
     def build(self):
-        cmake = self._configure_cmake()
+        cmake = CMake(self)
+        cmake.configure()
         cmake.build()
-        if self._run_tests:
-            self.run("ctest -VV -C %s" % cmake.build_type, run_environment=True)
+
 
     def package(self):
-        self.copy(pattern="*license*", dst="licenses", excludes="cmake/common/*", ignore_case=True, keep_path=False)
-        cmake = self._configure_cmake()
+        cmake = CMake(self)
         cmake.install()
 
+    @property
+    def _postfix(self):
+        if self.settings.os == "Windows":
+            return "d" if self.settings.build_type == "Debug" else ""
+
     def package_info(self):
-        self.cpp_info.libs = ['Tufao']
+        self.cpp_info.libs = ["Tufao"]
+        self.cpp_info.set_property("cmake_find_mode", "none") # do not generate find modules
+        self.cpp_info.builddirs.append(os.path.join("lib", "cmake", "Tufao"))
+        self.cpp_info.set_property("cmake_file_name", "Tufao")
+        self.cpp_info.set_property("cmake_target_name", "Tufao::Tufao")
 
     # uncomment for a header-only library
     # def package_id(self):

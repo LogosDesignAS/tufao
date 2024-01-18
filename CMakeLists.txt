@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.18.1)
 # Project Tufão
 project(tufao)
 
@@ -9,9 +10,9 @@ set(TUFAO_VERSION ${TUFAO_VERSION_MAJOR}.${TUFAO_VERSION_MINOR}.${TUFAO_VERSION_
 set(TUFAO_BRIEF "An asynchronous web framework for C++ built on top of Qt")
 
 # Dependencies
-cmake_minimum_required(VERSION 2.8.11)
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Network REQUIRED)
+
+find_package(Qt6Core REQUIRED)
+find_package(Qt6Network REQUIRED)
 find_package(Boost 1.55 REQUIRED)
 
 # CMake since 3.1 has ability to use particular C/C++ standarts.
@@ -22,7 +23,7 @@ if("${CMAKE_VERSION}" VERSION_LESS "3.1")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX11_FLAGS}")
 endif()
 
-get_target_property(QMAKE_EXECUTABLE Qt5::qmake LOCATION)
+get_target_property(QMAKE_EXECUTABLE Qt6::qmake LOCATION)
 function(QUERY_QMAKE VAR RESULT)
     exec_program("${QMAKE_EXECUTABLE}" ARGS "-query ${VAR}" RETURN_VALUE return_code OUTPUT_VARIABLE output)
     if(NOT return_code)
