@@ -562,9 +562,8 @@ void WebSocket::connectToHost(QAbstractSocket *socket,
     connect(priv->socket, &QAbstractSocket::readyRead,
             this, &WebSocket::onReadyRead);
     {
-        void(QAbstractSocket::*errorSignal)(QAbstractSocket::SocketError)
-                = &QAbstractSocket::error;
-        connect(priv->socket, errorSignal, this, &WebSocket::onSocketError);
+        
+        connect(priv->socket, &QAbstractSocket::errorOccurred, this, &WebSocket::onSocketError);
     }
 }
 
