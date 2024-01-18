@@ -31,14 +31,14 @@ class TufaoConan(ConanFile):
         "fPIC": [True, False]
     }
     default_options = {
-        "shared": False,    # remove for a header-only library
+        "shared": True,    # remove for a header-only library
         "fPIC": True,       # remove for a header-only library
     }
 
     generators = "CMakeDeps"
 
     exports_sources = ('CMakeLists.txt', 'src/*', 'tests/*', 'TufaoConfig.cmake.in', 'COPYING.LESSER', 'cmake/*',
-                       'include/*', 'doc/*')
+                       'include/*', 'doc/*', '3rd/*')
 
 
     def configure(self):
