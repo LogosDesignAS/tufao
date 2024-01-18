@@ -34,6 +34,7 @@
 #endif
 
 class QSslError;
+#include <QSslError>
 
 namespace Tufao {
 
