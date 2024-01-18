@@ -24,6 +24,7 @@
 
 #include <QtNetwork/QAbstractSocket>
 #include <QtCore/QtEndian>
+#include <QRandomGenerator>
 
 #if defined(NO_ERROR) && defined(_WIN32)
 # define TUFAO_WINERROR_WORKAROUND
@@ -221,7 +222,7 @@ struct WebSocket::Priv
                     quint32 key;
                     uchar pieces[4];
                 } mask;
-                mask.key = qrand();
+                mask.key = QRandomGenerator::global()->generate();
                 socket->write(reinterpret_cast<char*>(mask.pieces), 4);
 
                 for (int i = 0;i != size;++i) {

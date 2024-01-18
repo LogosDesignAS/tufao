@@ -144,7 +144,7 @@ void HttpServerRequest::onReadyRead()
         case http::token::symbol::method:
             {
                 clearRequest();
-                priv->responseOptions = 0;
+                priv->responseOptions = HttpServerResponse::Options();
                 auto value = priv->parser.value<http::token::method>();
                 QByteArray method(value.data(), value.size());
                 priv->method = std::move(method);

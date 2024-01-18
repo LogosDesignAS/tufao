@@ -493,7 +493,7 @@ void WebSocket::onConnected()
         headerValue.reserve(16);
 
         for (int i = 0;i < 16;i += SUBSTR_SIZE) {
-            chunk.i = qrand();
+            chunk.i = QRandomGenerator::global()->generate();
             headerValue.append(chunk.str, qMin(SUBSTR_SIZE, 16 - i));
         }
 
