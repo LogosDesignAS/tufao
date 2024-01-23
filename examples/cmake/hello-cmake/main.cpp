@@ -26,6 +26,7 @@
 #include <Tufao/HttpServer>
 #include <Tufao/HttpServerRequest>
 #include <Tufao/Headers>
+#include <iostream>
 
 using namespace Tufao;
 
@@ -41,7 +42,8 @@ int main(int argc, char *argv[])
                          res.end("Hello " + req.url().path().toUtf8());
                      });
 
-    server.listen(QHostAddress::Any, 8080);
+    bool ok = server.listen(QHostAddress::Any, 8080);
+    std::cout << "Listen result: " << (ok ? "OK" : "FAILED") << std::endl;
 
     return a.exec();
 }

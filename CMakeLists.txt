@@ -13,7 +13,7 @@ set(TUFAO_BRIEF "An asynchronous web framework for C++ built on top of Qt")
 
 find_package(Qt6Core REQUIRED)
 find_package(Qt6Network REQUIRED)
-find_package(Boost 1.55 REQUIRED)
+find_package(Boost 1.83.0 REQUIRED)
 
 # CMake since 3.1 has ability to use particular C/C++ standarts.
 # For versions before 3.1 use FindCXX11 module as fallback.
@@ -70,6 +70,8 @@ add_subdirectory(src)
 add_subdirectory(doc)
 
 
+
+
 # Testing
 if(ENABLE_TESTS)
     include(CTest)
@@ -78,4 +80,8 @@ endif()
 
 # cmake-modules
 set(TUFAO_CONFIG_INSTALL_DIR "${libdir}/cmake/Tufao")
+message(STATUS ${CMAKE_CURRENT_BINARY_DIR})
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/src")
 
+
+add_subdirectory(examples/cmake/hello-cmake)
